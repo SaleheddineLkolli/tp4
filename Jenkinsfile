@@ -17,10 +17,12 @@ pipeline {
         stage('Building image') {
             steps {
                 script {
-                    dockerImage = docker.build(registry + ":$BUILD_NUMBER")
+                dockerImage = docker.build(registry + ":$BUILD_NUMBER")
+                echo "Docker image built: $dockerImage"
                 }
             }
         }
+
         stage('Test image') {
             steps {
                 script {
