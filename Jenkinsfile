@@ -2,7 +2,7 @@ pipeline {
     environment {
         registry = "saleheddinelkolli/tp4"
         registryCredential = 'dockerhub'
-        dockerImage = 'postgres'
+        dockerImage = ''
     }
     agent any
     stages {
@@ -37,7 +37,7 @@ pipeline {
         stage('Deploy image') {
             steps {
                 script {
-                    bat "docker run -d $registry:$BUILD_NUMBER"
+                    sh "docker run -d $registry:$BUILD_NUMBER"
                 }
             }
         }
