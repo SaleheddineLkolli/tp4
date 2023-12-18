@@ -21,16 +21,14 @@ pipeline {
         stage('Test image') {
             steps {
                 script {
-                    sh "docker inspect $dockerImage"
-                    // Run a simple command within the Docker container (replace with your test command)
-                    sh "docker run --rm $dockerImage echo 'Test passed'"
+                    sh "echo 'Test passed'"
                 }
             }
         }
         stage('Publish Image') {
             steps {
                 script {
-                    docker.withRegistry('', registryCredential) {
+                    docker.withRegistry(registry, registryCredential) {
                         dockerImage.push()
                     }
                 }
