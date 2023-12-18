@@ -33,6 +33,12 @@ pipeline {
                     }
                 }
             }
+
+        stage('Deploy image') {
+            steps{
+                bat "docker run -d $registry:$BUILD_NUMBER"
+                }
+        }   
         }
     }
 }
